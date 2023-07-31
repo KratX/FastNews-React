@@ -16,6 +16,10 @@ export function News() {
     },
   });
 
+  if (HeadlinesQuery.isLoading) return <h1>Loading....</h1>
+  if (HeadlinesQuery.error) {
+    return <div>Error: {HeadlinesQuery.error.message}</div>;}
+
   return (
     <div className="bg-gray-500">
       <div className="flex flex-col items-center gap-6 text-center px-4">
