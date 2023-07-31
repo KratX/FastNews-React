@@ -2,11 +2,13 @@ import { NewsItem } from "./NewsItem";
 import { useQuery } from "@tanstack/react-query";
 
 export function News() {
+
+
   const HeadlinesQuery = useQuery({
     queryKey: ["topHeadlines"], // unique identifier for this query
-    queryFn:  async () => {
+    queryFn: async () => {
       const response = await fetch(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=9080c2e52b9440e4950be63abc91c41a"
+        `https://newsapi.org/v2/top-headlines?country=in&apiKey=9080c2e52b9440e4950be63abc91c41a`
       );
       const data = await response.json();
       console.log(data);
@@ -28,9 +30,9 @@ export function News() {
           </span>
         </h1>
       </div>
-      <div className="flex flex-wrap" >
-      {HeadlinesQuery.data?.map((element) => {
-        return (
+      <div className="flex flex-wrap">
+        {HeadlinesQuery.data?.map((element) => {
+          return (
             <div className="my-12 mx-auto" key={element.url}>
               <NewsItem
                 title={element.title}
@@ -39,9 +41,9 @@ export function News() {
                 newsUrl={element.url}
               />
             </div>
-        );
-      })}
-          </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

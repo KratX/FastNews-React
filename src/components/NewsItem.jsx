@@ -6,17 +6,17 @@ import PropTypes from 'prop-types'
 
     return (
       <Card className="mt-8 mx-4 lg:w-96 w-[22rem]">
-        <CardHeader color="blue-gray" className="relative h-56">
-          <img
+        <CardHeader color="blue-gray" className="relative h-56 ">
+          <img className="w-full h-full object-cover"
             src={props.urlToImage}
             alt="card-image"
           />
         </CardHeader>
-        <CardBody className="h-64">
-          <Typography variant="h5" color="blue-gray" className="mb-2">
+        <CardBody className="h-[11.5rem] hover:h-auto">
+          <Typography variant="h5" color="blue-gray" className="mb-2 line-clamp-2 hover:line-clamp-none">
             {props.title}
           </Typography>
-          <Typography>
+          <Typography className="line-clamp-3 hover:line-clamp-none" >
             {props.description}
           </Typography>
         </CardBody>
