@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
   export function NewsItem(props) {
 
     return (
-      <Card className="mt-8 w-96 mx-12">
+      <Card className="mt-8 mx-4 lg:w-96 w-[22rem]">
         <CardHeader color="blue-gray" className="relative h-56">
           <img
             src=""
