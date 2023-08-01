@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { NewsItem } from "./NewsItem";
 import { useQuery } from "@tanstack/react-query";
+import { Button } from "@material-tailwind/react";
 
 export function News() {
-
+  const [page, setPage] = useState(1);
 
   const HeadlinesQuery = useQuery({
-    queryKey: ["topHeadlines"], // unique identifier for this query
+    queryKey: ["topHeadlines", { page }],
     queryFn: async () => {
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=in&apiKey=9080c2e52b9440e4950be63abc91c41a`
+        `https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=20&page=${page}`
       );
       const data = await response.json();
       console.log(data);
@@ -16,9 +18,12 @@ export function News() {
     },
   });
 
-  if (HeadlinesQuery.isLoading) return <h1>Loading....</h1>
+  if (HeadlinesQuery.isLoading) return <h1>Loading....</h1>;
   if (HeadlinesQuery.error) {
-    return <div>Error: {HeadlinesQuery.error.message}</div>;}
+    return <div>Error: {HeadlinesQuery.error.message}</div>;
+  }
+
+  const totalPages = Math.ceil(HeadlinesQuery.data.totalResults / 20);
 
   return (
     <div className="bg-gray-500">
@@ -47,6 +52,20 @@ export function News() {
             </div>
           );
         })}
+      </div>
+      <div>
+        <Button
+          onClick={() => setPage((page) => page - 1)}
+          disabled={page === 1}
+        >
+          Previous Page
+        </Button>
+        <Button
+          onClick={() => setPage((page) => page + 1)}
+          disabled={page === totalPages}
+        >
+          Next Page
+        </Button>
       </div>
     </div>
   );

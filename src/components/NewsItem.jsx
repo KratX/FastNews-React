@@ -7,9 +7,9 @@ import PropTypes from 'prop-types'
     return (
       <Card className="mt-8 mx-4 lg:w-96 w-[22rem]">
         <CardHeader color="blue-gray" className="relative h-56 ">
-          <img className="w-full h-full object-cover"
+          <img className=" w-full h-full object-cover"
             src={props.urlToImage}
-            alt="card-image"
+            alt=""
           />
         </CardHeader>
         <CardBody className="h-[11.5rem] hover:h-auto">
