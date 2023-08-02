@@ -1,30 +1,27 @@
 import { NewsItem } from "./NewsItem";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "./Spinner";
+import PropTypes from "prop-types";
 
-
-export function News() {
-
-
+export function News(props) {
   const HeadlinesQuery = useQuery({
     queryKey: ["topHeadlines"],
     queryFn: async () => {
       // setloading(true);
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=20`
-        );
+        `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=20`
+      );
       const data = await response.json();
       console.log(data);
       return data.articles;
     },
   });
 
-  
   if (HeadlinesQuery.error) {
     return <div>Error: {HeadlinesQuery.error.message}</div>;
   }
 
-  return ( 
+  return (
     <div className="bg-gray-500">
       <div className="flex flex-col items-center gap-6 text-center px-4">
         <h1
@@ -37,7 +34,7 @@ export function News() {
             Top Headlines based on
           </span>
         </h1>
-      <div>{HeadlinesQuery.isLoading ? <Spinner /> : null}</div>
+        <div>{HeadlinesQuery.isLoading ? <Spinner /> : null}</div>
       </div>
 
       <div className="flex flex-wrap">
@@ -55,5 +52,15 @@ export function News() {
         })}
       </div>
     </div>
-  )
+  );
 }
+
+News.defaultProps = {
+  country:'in',
+  category:"general",
+}
+
+News.propTypes = {
+  country: PropTypes.string,
+  category: PropTypes.string,
+};

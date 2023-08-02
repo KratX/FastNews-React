@@ -1,7 +1,12 @@
 import React from "react";
-import {Navbar,Collapse,Typography,IconButton} from "@material-tailwind/react";
+import {
+  Navbar,
+  Collapse,
+  Typography,
+  IconButton,
+} from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
- 
+
 function NavList() {
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
@@ -11,8 +16,11 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Pages
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          General
         </a>
       </Typography>
       <Typography
@@ -21,8 +29,11 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Account
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Sports
         </a>
       </Typography>
       <Typography
@@ -31,8 +42,11 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Blocks
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Health
         </a>
       </Typography>
       <Typography
@@ -41,28 +55,70 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a href="#" className="flex items-center hover:text-blue-500 transition-colors">
-          Docs
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Science
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Entertainment
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Technology
+        </a>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <a
+          href="#"
+          className="flex items-center hover:text-blue-500 transition-colors"
+        >
+          Buisness
         </a>
       </Typography>
     </ul>
   );
 }
- 
+
 export function Navigationbar() {
   const [openNav, setOpenNav] = React.useState(false);
- 
+
   const handleWindowResize = () =>
     window.innerWidth >= 960 && setOpenNav(false);
- 
+
   React.useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
- 
+
     return () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
- 
+
   return (
     <Navbar className="px-6 py-3 max-w-full ">
       <div className="flex items-center justify-between text-blue-gray-900">
