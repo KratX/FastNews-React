@@ -1,31 +1,30 @@
-import { useState } from "react";
 import { NewsItem } from "./NewsItem";
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@material-tailwind/react";
+import { Spinner } from "./Spinner";
+
 
 export function News() {
-  const [page, setPage] = useState(1);
+
 
   const HeadlinesQuery = useQuery({
-    queryKey: ["topHeadlines", { page }],
+    queryKey: ["topHeadlines"],
     queryFn: async () => {
+      // setloading(true);
       const response = await fetch(
-        `https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=20&page=${page}`
-      );
+        `https://newsapi.org/v2/top-headlines?country=in&category=health&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=20`
+        );
       const data = await response.json();
       console.log(data);
       return data.articles;
     },
   });
 
-  if (HeadlinesQuery.isLoading) return <h1>Loading....</h1>;
+  
   if (HeadlinesQuery.error) {
     return <div>Error: {HeadlinesQuery.error.message}</div>;
   }
 
-  const totalPages = Math.ceil(HeadlinesQuery.data.totalResults / 20);
-
-  return (
+  return ( 
     <div className="bg-gray-500">
       <div className="flex flex-col items-center gap-6 text-center px-4">
         <h1
@@ -38,7 +37,9 @@ export function News() {
             Top Headlines based on
           </span>
         </h1>
+      <div>{HeadlinesQuery.isLoading ? <Spinner /> : null}</div>
       </div>
+
       <div className="flex flex-wrap">
         {HeadlinesQuery.data?.map((element) => {
           return (
@@ -53,20 +54,6 @@ export function News() {
           );
         })}
       </div>
-      <div>
-        <Button
-          onClick={() => setPage((page) => page - 1)}
-          disabled={page === 1}
-        >
-          Previous Page
-        </Button>
-        <Button
-          onClick={() => setPage((page) => page + 1)}
-          disabled={page === totalPages}
-        >
-          Next Page
-        </Button>
-      </div>
     </div>
-  );
+  )
 }
