@@ -4,8 +4,9 @@ import { Spinner } from "./Spinner";
 import PropTypes from "prop-types";
 
 export function News(props) {
+  const { country, category } = props;
   const HeadlinesQuery = useQuery({
-    queryKey: ["topHeadlines"],
+    queryKey: ["topHeadlines", {country, category} ],
     queryFn: async () => {
       // setloading(true);
       const response = await fetch(
@@ -22,7 +23,7 @@ export function News(props) {
   }
 
   return (
-    <div className="bg-gray-500">
+    <div className="">
       <div className="flex flex-col items-center gap-6 text-center px-4">
         <h1
           className="inline-block
@@ -54,6 +55,7 @@ export function News(props) {
     </div>
   );
 }
+
 
 News.defaultProps = {
   country:'in',

@@ -6,22 +6,23 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 
 function NavList() {
   return (
-    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+    <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 ">
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <Link
+          to="/"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
         >
           General
-        </a>
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -29,77 +30,77 @@ function NavList() {
         color="blue-gray"
         className="p-1 font-medium"
       >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Sports
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Health
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Science
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Entertainment
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
-        >
-          Technology
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <a
-          href="#"
-          className="flex items-center hover:text-blue-500 transition-colors"
+        <Link
+          to="/business"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
         >
           Buisness
-        </a>
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/entertainment"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
+        >
+          Entertainment
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/health"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
+        >
+          Health
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/science"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
+        >
+          Science
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/sports"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
+        >
+          Sports
+        </Link>
+      </Typography>
+      <Typography
+        as="li"
+        variant="small"
+        color="blue-gray"
+        className="p-1 font-medium"
+      >
+        <Link
+          to="/technology"
+          className="flex items-center text-white hover:text-blue-500 transition-colors"
+        >
+          Technology
+        </Link>
       </Typography>
     </ul>
   );
@@ -120,15 +121,16 @@ export function Navigationbar() {
   }, []);
 
   return (
-    <Navbar className="px-6 py-3 max-w-full ">
-      <div className="flex items-center justify-between text-blue-gray-900">
+    <Navbar variant="gradient" className="px-6 py-3 max-w-full bg-[#111827] ">
+      <div className="flex items-center justify-between  text-white">
         <Typography
           as="a"
           href="#"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 md:justify-center"
-        >
+        ><Link to="/">
           Fast News
+        </Link>
         </Typography>
         <div className="hidden lg:block">
           <NavList />
