@@ -128,9 +128,8 @@ export function Navigationbar() {
           href="#"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 md:justify-center"
-        ><Link to="/">
-          Fast News
-        </Link>
+        >
+          <Link to="/">Fast News</Link>
         </Typography>
         <div className="hidden lg:block">
           <NavList />
