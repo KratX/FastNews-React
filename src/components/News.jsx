@@ -9,6 +9,7 @@ export function News(props) {
   const { country, category } = props;
   const [page, setPage] = useState(1);
   const [articles, setArticles] = useState([]);
+  const [totalResults, setTotalResults] = useState(0)
   document.title = `FastNews - ${
     props.category.charAt(0).toUpperCase() + props.category.slice(1)
   }`;
@@ -19,20 +20,30 @@ export function News(props) {
         `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=16&page=${page}`
       );
       const data = await response.json();
+      setArticles(data.articles)
+      setTotalResults(data.totalResults)
       console.log(data);
-      const newArticles = articles.concat(data.articles);
-      setArticles(newArticles);
-      return newArticles;
+      return data.articles
     },
   });
 
   const hasMoreData = HeadlinesQuery.data
-  ? HeadlinesQuery.data.length < HeadlinesQuery.data.totalResults
+  ? HeadlinesQuery.data.length < totalResults
   : true;
 
-  const FetchData = () => {
-    setPage(page + 1)
+  const FetchData = async () => {
+    setPage(page + 1);
+  
+    const response = await fetch(
+      `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=9080c2e52b9440e4950be63abc91c41a&pageSize=16&page=${page}`
+    );
+    const data = await response.json();
+  
+    setArticles((prevArticles) => prevArticles.concat(data.articles));
+    setTotalResults(data.totalResults);
   };
+
+  
 
   if (HeadlinesQuery.error) {
     return <div>Error: {HeadlinesQuery.error.message}</div>;
@@ -54,13 +65,14 @@ export function News(props) {
         </h1>
         {/* <div>{HeadlinesQuery.isLoading ? <Spinner /> : null}</div> */}
       </div>
-      <InfiniteScroll
+      <InfiniteScroll className="text-center items-center"
         dataLength={articles.length}
         next={FetchData}
         hasMore={hasMoreData} // Replace with a condition based on your data source
         loader={<Spinner/>}
       >
-        <div className="flex flex-wrap">
+
+        <div className="flex flex-wrap ">
           {HeadlinesQuery.data?.map((element) => {
             return (
               <div className="my-12 mx-auto" key={element.url}>
@@ -72,7 +84,7 @@ export function News(props) {
                   publishedAt={element.publishedAt}
                   author={element.author}
                   source={element.source.name}
-                />
+                  />
               </div>
             );
           })}

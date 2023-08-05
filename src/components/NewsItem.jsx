@@ -4,13 +4,11 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  Badge,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types";
 
 export function NewsItem(props) {
   return (
-      <Badge content={props.source} color="light-blue">
     <Card className="mt-8 mx-4 lg:w-96 w-[22rem]">
       <CardHeader color="blue-gray" className="relative h-56 ">
         <img
@@ -60,7 +58,6 @@ export function NewsItem(props) {
         </Typography>
       </CardFooter>
     </Card>
-</Badge>
   );
 }
 
