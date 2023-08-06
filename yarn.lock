@@ -2331,6 +2331,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+use-intersection-observer@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/use-intersection-observer/-/use-intersection-observer-0.0.0.tgz#6f73a6924c3d0e1fdda043960d44703850efeba4"
+  integrity sha512-E/TUd3xIvBgA4w8tN3BMCA1SbYJRtXe3EfOcWrRxbAZYOwlfs1vWmIQ3dJwAQiIN3EOnUi8QvpnbrKmM6xo2QA==
+
 use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
