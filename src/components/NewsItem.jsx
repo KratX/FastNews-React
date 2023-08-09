@@ -36,7 +36,7 @@ export function NewsItem(props) {
           rel="noreferrer"
           target="_blank"
           className="flex items-center gap-2 font-bold text-light-blue-800"
-          >
+        >
           Learn More
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -45,16 +45,17 @@ export function NewsItem(props) {
             strokeWidth={2}
             stroke="currentColor"
             className="h-4 w-4"
-            >
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
               d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-              />
+            />
           </svg>
         </a>
         <Typography className="text-gray-900 font-normal w-48 line-clamp-2 hover:line-clamp-none">
-          By {!props.author ? "Unknown" : props.author} on {new Date(props.publishedAt).toUTCString()}
+          By {!props.author ? "Unknown" : props.author} on{" "}
+          {new Date(props.publishedAt).toUTCString()}
         </Typography>
       </CardFooter>
     </Card>
