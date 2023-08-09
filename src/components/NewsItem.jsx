@@ -9,27 +9,39 @@ import PropTypes from "prop-types";
 
 export function NewsItem(props) {
   return (
-    <Card className="mt-8 mx-4 lg:w-96 w-[22rem]">
+    <Card
+      className={`mt-8 mx-4 lg:w-96 w-[22rem] text-white ${
+        props.index % 2 === 0
+          ? "bg-gradient-to-br from-gray-500 via-gray-800 to-deep-orange-800"
+          : "bg-gradient-to-br from-gray-500 via-gray-800 to-deep-orange-800"
+      } `}
+    >
+      {/* CardHeader */}
       <CardHeader color="blue-gray" className="relative h-56 ">
         <img
-          className=" w-full h-full object-cover"
+          className="w-full h-full object-cover"
           src={props.urlToImage}
           alt="Image Unavailable"
         />
       </CardHeader>
-      <CardBody className="h-[11.5rem] hover:h-auto">
+
+      {/* CardBody */}
+      <CardBody className="h-[11.5rem] hover:h-auto ">
         <Typography
           variant="h5"
           color="blue-gray"
-          className="mb-2 line-clamp-2 hover:line-clamp-none"
+          className="mb-2 line-clamp-2 hover:line-clamp-none text-blue-gray-100 font-rta"
         >
           {props.title}
         </Typography>
-        <Typography className="line-clamp-3 hover:line-clamp-none">
+        <Typography className="line-clamp-3 hover:line-clamp-none text-blue-gray-100 font-rta">
           {props.description}
         </Typography>
       </CardBody>
+
+      {/* CardFooter */}
       <CardFooter className="pt-0 flex justify-between">
+        {/* Learn More Link */}
         <a
           size="sm"
           href={props.newsUrl}
@@ -53,7 +65,9 @@ export function NewsItem(props) {
             />
           </svg>
         </a>
-        <Typography className="text-gray-900 font-normal w-48 line-clamp-2 hover:line-clamp-none">
+
+        {/* Author and Published Date */}
+        <Typography className="text-brown-100 font-normal w-48 line-clamp-2 hover:line-clamp-none font-rta">
           By {!props.author ? "Unknown" : props.author} on{" "}
           {new Date(props.publishedAt).toUTCString()}
         </Typography>
@@ -62,6 +76,7 @@ export function NewsItem(props) {
   );
 }
 
+// PropTypes validation for NewsItem props
 NewsItem.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
@@ -70,4 +85,5 @@ NewsItem.propTypes = {
   author: PropTypes.string,
   publishedAt: PropTypes.string,
   source: PropTypes.string,
+  index: PropTypes.number,
 };

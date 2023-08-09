@@ -9,7 +9,12 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
-      lineClamp: ['hover']
+      lineClamp: ['hover'],
+      fontFamily: {
+        rta: ["RTA", "cursive"],
+        vina: ['Vina Sans', "cursive"],
+      },
+
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],

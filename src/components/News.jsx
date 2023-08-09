@@ -35,7 +35,7 @@ export function News(props) {
     {
       getNextPageParam: (lastPage, pages) => {
         const nextPage = pages.length + 1; // Calculate next page based on fetched pages
-        const totalPages = Math.ceil(lastPage.totalResults / 16); // Calculate total number of pages
+        const totalPages = Math.ceil(lastPage.totalResults / 16); // Calculate total number of pages - hardcoded pageSize in API
         return nextPage <= totalPages ? nextPage : undefined;
       },
     }
@@ -77,7 +77,7 @@ export function News(props) {
             md:text-6xl
             lg:text-7xl"
         >
-          <span className="my-2 py-6 inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 ...">
+          <span className="font-vina antialiased my-2 py-6 inline-block text-[#c7493a] font-thin uppercase">
             Top Headlines based on -{" "}
             {props.category.charAt(0).toUpperCase() + props.category.slice(1)}
           </span>
@@ -88,10 +88,11 @@ export function News(props) {
       <div id="data" className="flex flex-wrap">
         {data
           ? data.pages.map((page) =>
-              page.articles.map((element) => (
+              page.articles.map((element, index) => (
                 <div className="card my-12 mx-auto" key={element.url}>
                   {/* Render NewsItem component for each article */}
                   <NewsItem
+                    index={index}
                     title={element.title}
                     description={element.description}
                     urlToImage={element.urlToImage}
