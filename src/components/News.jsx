@@ -28,6 +28,7 @@ export function News(props) {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
+    isLoading,
   } = useInfiniteQuery(
     ["topHeadlines", country, category], // Unique query key
     fetchNewsArticles, // Fetch function
@@ -70,7 +71,18 @@ export function News(props) {
   return (
     <div className="">
       <div className="flex flex-col items-center gap-6 text-center px-4">
-        {/* ... (rest of your code) */}
+        <h1
+          className="inline-block
+            font-black text-4xl
+            md:text-6xl
+            lg:text-7xl"
+        >
+          <span className="my-2 py-6 inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 ...">
+            Top Headlines based on -{" "}
+            {props.category.charAt(0).toUpperCase() + props.category.slice(1)}
+          </span>
+        </h1>
+        <div>{isLoading ? <Spinner /> : null}</div>
       </div>
 
       <div id="data" className="flex flex-wrap">
